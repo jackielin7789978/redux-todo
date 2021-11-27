@@ -23,7 +23,9 @@ export const todosSlice = createSlice({
       console.log('deleteTodo')
     },
     todoToggled: (state, action) => {
-      console.log('toggle')
+      const { id, isDone } = action.payload
+      const targetTodo = state.find((todo) => todo.id === id)
+      targetTodo.isDone = isDone
     }
   }
 })

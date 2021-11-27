@@ -36,7 +36,7 @@ export default function Todo() {
           style={{ width: '100%' }}
         >
           {todos.map((todo) => (
-            <TodoItem taskname={todo.taskname} />
+            <TodoItem key={todo.id} todo={todo} />
           ))}
         </Space>
       </Space>
