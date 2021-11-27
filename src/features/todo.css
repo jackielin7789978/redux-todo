@@ -20,17 +20,11 @@ body {
   font-size: 28px;
 }
 
-.input-bar {
-  margin: 8px 0;
-  color: #fefefe;
-}
-
 .todo-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 4px 18px;
-  cursor: pointer;
   border: 1px solid transparent;
   transition: all 0.2s;
 }
