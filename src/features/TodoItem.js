@@ -1,13 +1,17 @@
 import './todo.css'
 import { Radio, Checkbox } from 'antd'
 import { useDispatch } from 'react-redux'
-import { todoToggled } from './todosSlice'
+import { todoToggled, todoDeleted } from './todosSlice'
 
 export default function TodoItem({ todo }) {
   const dispatch = useDispatch()
 
   const handleToggle = (e) => {
     dispatch(todoToggled({ id: todo.id, isDone: e.target.checked }))
+  }
+
+  const handleDelete = () => {
+    dispatch(todoDeleted({ id: todo.id }))
   }
 
   return (
@@ -18,7 +22,9 @@ export default function TodoItem({ todo }) {
       </div>
       <Radio.Group>
         <Radio.Button disabled={todo.isDone}>Edit</Radio.Button>
-        <Radio.Button disabled={todo.isDone}>Delete</Radio.Button>
+        <Radio.Button disabled={todo.isDone} onClick={handleDelete}>
+          Delete
+        </Radio.Button>
       </Radio.Group>
     </div>
   )

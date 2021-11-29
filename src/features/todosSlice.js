@@ -20,7 +20,11 @@ export const todosSlice = createSlice({
       }
     },
     todoDeleted: (state, action) => {
-      console.log('deleteTodo')
+      const { id } = action.payload
+      return state.filter((todo) => todo.id !== id)
+    },
+    removeCompleted: (state) => {
+      return state.filter((todo) => todo.isDone === false)
     },
     todoToggled: (state, action) => {
       const { id, isDone } = action.payload
@@ -30,6 +34,7 @@ export const todosSlice = createSlice({
   }
 })
 
-export const { todoAdded, todoDeleted, todoToggled } = todosSlice.actions
+export const { todoAdded, todoDeleted, todoToggled, removeCompleted } =
+  todosSlice.actions
 
 export default todosSlice.reducer
