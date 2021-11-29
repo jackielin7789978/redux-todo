@@ -29,12 +29,23 @@ export const todosSlice = createSlice({
     todoToggled: (state, action) => {
       const { id, isDone } = action.payload
       const targetTodo = state.find((todo) => todo.id === id)
+      if (!targetTodo) return
       targetTodo.isDone = isDone
+    },
+    todoEdited: (state, action) => {
+      const { id, taskname } = action.payload
+      const targetTodo = state.find((todo) => todo.id === id)
+      targetTodo.taskname = taskname
     }
   }
 })
 
-export const { todoAdded, todoDeleted, todoToggled, removeCompleted } =
-  todosSlice.actions
+export const {
+  todoAdded,
+  todoDeleted,
+  todoToggled,
+  removeCompleted,
+  todoEdited
+} = todosSlice.actions
 
 export default todosSlice.reducer
