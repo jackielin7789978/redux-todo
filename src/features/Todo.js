@@ -46,19 +46,19 @@ export default function Todo() {
     }
   })
 
+  const filterMenuClassName = todos.length
+    ? 'filter-menu'
+    : 'filter-menu-hidden'
+
   return (
     <div className='container'>
-      {filteredTodos.length ? (
-        <Affix offsetTop={30} className='filter-menu'>
-          <Dropdown overlay={menu}>
-            <Button type='primary'>
-              {currentFilter} <DownOutlined />
-            </Button>
-          </Dropdown>
-        </Affix>
-      ) : (
-        <></>
-      )}
+      <Affix offsetTop={30} className={filterMenuClassName}>
+        <Dropdown overlay={menu}>
+          <Button type='primary'>
+            {currentFilter} <DownOutlined />
+          </Button>
+        </Dropdown>
+      </Affix>
       <Space direction='vertical' size='large' style={{ width: '100%' }}>
         <div>
           <div className='title'>

@@ -61,3 +61,6 @@ body {
   display: inline-block;
   left: 105%;
 }
+.filter-menu-hidden {
+  opacity: 0;
+}
