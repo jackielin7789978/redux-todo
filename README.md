@@ -3,6 +3,8 @@
 用 Redux Toolkit + React 做的簡易 todo list app，
 介面以 Ant Design 實作。
 
+[Demo Link](https://jackielin7789978.github.io/redux-todo/)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
