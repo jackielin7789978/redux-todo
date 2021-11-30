@@ -2,13 +2,14 @@ import './todo.css'
 import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { todoAdded, removeCompleted } from './todosSlice'
-import { Input, Space, Button } from 'antd'
-import { DeleteOutlined } from '@ant-design/icons'
+import { Affix, Dropdown, Menu, Input, Space, Button } from 'antd'
+import { DeleteOutlined, DownOutlined } from '@ant-design/icons'
 import TodoItem from './TodoItem'
 import { hasCompleted } from '../utils'
 
 export default function Todo() {
   const [inputVal, setInputVal] = useState('')
+  const [currentFilter, setCurrentFilter] = useState('Show All')
   const todos = useSelector((state) => state.todos)
   const dispatch = useDispatch()
 
@@ -20,8 +21,44 @@ export default function Todo() {
     setInputVal('')
   }
 
+  const menu = (
+    <Menu>
+      <Menu.Item key='1' onClick={() => setCurrentFilter('Show All')}>
+        Show All
+      </Menu.Item>
+      <Menu.Item key='2' onClick={() => setCurrentFilter('Show Active')}>
+        Show Active
+      </Menu.Item>
+      <Menu.Item key='3' onClick={() => setCurrentFilter('Show Completed')}>
+        Show Completed
+      </Menu.Item>
+    </Menu>
+  )
+
+  const filteredTodos = todos.filter((todo) => {
+    switch (currentFilter) {
+      case 'Show Active':
+        return todo.isDone === false
+      case 'Show Completed':
+        return todo.isDone === true
+      default:
+        return todo
+    }
+  })
+
   return (
     <div className='container'>
+      {filteredTodos.length ? (
+        <Affix offsetTop={30} className='filter-menu'>
+          <Dropdown overlay={menu}>
+            <Button type='primary'>
+              {currentFilter} <DownOutlined />
+            </Button>
+          </Dropdown>
+        </Affix>
+      ) : (
+        <></>
+      )}
       <Space direction='vertical' size='large' style={{ width: '100%' }}>
         <div>
           <div className='title'>
@@ -49,7 +86,7 @@ export default function Todo() {
           size='middle'
           style={{ width: '100%' }}
         >
-          {todos.map((todo) => (
+          {filteredTodos.map((todo) => (
             <TodoItem key={todo.id} todo={todo} />
           ))}
         </Space>
