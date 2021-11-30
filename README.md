@@ -1,7 +1,8 @@
 Lidemy 程式導師計畫作業
 
 用 Redux Toolkit + React 做的簡易 todo list app
-介面則是用 Ant Design 實作
+
+介面以用 Ant Design 實作
 
 # Getting Started with Create React App
 
